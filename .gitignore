@@ -1,2 +1,2 @@
 .DS_Store
-lib/config.js
+app/lib/config.js
