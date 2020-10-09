@@ -8,13 +8,15 @@ Projeto Criado em Node
  in OrcPed/app
   ```cd app
       mkdir .data
+      mkdir .logs
+     
       cd .data
         mkdir checks
         mkdir tokens
         mkdir users
+  
      cd ..
-      mkdir .logs
-      node index.js
+       node index.js
   ```
 
 [![N|Solid](https://www.opus-software.com.br/wp-content/uploads/2018/09/nodejs-1000x423.jpg)](https://www.linkedin.com/in/paulo-oliveira-nodejs/)
