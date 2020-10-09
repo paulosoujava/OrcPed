@@ -5,6 +5,7 @@ Projeto Criado em Node
 # No Frameworks!
 # how to use
  - create this folders in app
+ in OrcPed/app
   ```cd app
       mkdir .data
       cd .data
