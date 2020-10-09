@@ -17,6 +17,11 @@ Projeto Criado em Node
   
      cd ..
        node index.js
+        or debug mode
+          NODE_DEBUG=workers  node index.js
+        or production mode
+         NODE_ENV=production node index.js
+        default is staged
   ```
 
 # Endpoits
@@ -39,7 +44,7 @@ Projeto Criado em Node
       }
 
   /users/user?id=put_your_phone
-  
+
   /users 
     headers:
       token generated_token_in_end_point
