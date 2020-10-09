@@ -63,8 +63,7 @@ server.unifiedServer = function(req,res){
        buffer += decoder.end();
 
        // Check the router for a matching path for a handler. If one is not found, use the notFound handler instead.
-       var chosenHandler = typeof(server.router[trimmedPath]) !== 'undefined' ? server.router[trimmedPath] : handlers.notFound;
-
+       var chosenHandler = typeof(server.router[trimmedPath]) ? server.router[trimmedPath] : handlers.notFound;
        // Construct the data object to send to the handler
        var data = {
          'trimmedPath' : trimmedPath,
@@ -101,25 +100,28 @@ server.unifiedServer = function(req,res){
 
    });
  };
- 
-  // define a request router
-  server.router = {
-      'users': handlers.users,
-      'tokens': handlers.tokens,
-       'checks': handlers.checks
-  }
- 
- 
-server.init = () => {
-  // Start the  HTTP server 
-    server.httpServer.listen(config.httpPort, function(){
-        console.log('\x1b[36m%s\x1b[0m','The HTTP server is running on port '+config.httpPort);
-    })
-    // start the HTTPS server
-    server.httpsServer.listen(config.httpsPort, function(){
-        console.log('\x1b[35m%s\x1b[0m','The HTTPS server is running on port '+config.httpsPort);
-    })
-}
 
- module.exports = server
- 
+ // Define the request router
+server.router = {
+   'ping' : handlers.ping,
+   'users' : handlers.users,
+   'tokens' : handlers.tokens,
+   'checks' : handlers.checks
+ };
+
+ // Init script
+server.init = function(){
+  // Start the HTTP server
+  server.httpServer.listen(config.httpPort,function(){
+    console.log('\x1b[36m%s\x1b[0m','The HTTP server is running on port '+config.httpPort);
+  });
+
+  // Start the HTTPS server
+  server.httpsServer.listen(config.httpsPort,function(){
+    console.log('\x1b[35m%s\x1b[0m','The HTTPS server is running on port '+config.httpsPort);
+  });
+};
+
+
+ // Export the module
+ module.exports = server;

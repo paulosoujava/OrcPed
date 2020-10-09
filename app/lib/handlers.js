@@ -1,3 +1,8 @@
+/*
+ * Request Handlers
+ *
+ */
+
 // Dependencies
 var _data = require('./data');
 var helpers = require('./helpers');
@@ -8,7 +13,10 @@ var handlers = {};
 
 // Ping
 handlers.ping = function(data,callback){
+  setTimeout(function(){
     callback(200);
+  },5000);
+
 };
 
 // Not-Found
@@ -499,7 +507,6 @@ handlers._checks.get = function(data,callback){
         // Get the token that sent the request
         var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
         // Verify that the given token is valid and belongs to the user who created the check
-        console.log("This is check data",checkData);
         handlers._tokens.verifyToken(token,checkData.userPhone,function(tokenIsValid){
           if(tokenIsValid){
             // Return check data
@@ -645,3 +652,7 @@ handlers._checks.delete = function(data,callback){
     callback(400,{"Error" : "Missing valid id"});
   }
 };
+
+
+// Export the handlers
+module.exports = handlers;
